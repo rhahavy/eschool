@@ -12,7 +12,7 @@ body {
 
 header {
   background: #d7edcf;
-  color: white;
+  color: #444;
   padding: 2rem;
   text-align: center;
 }
@@ -29,7 +29,7 @@ nav {
 nav a {
   margin: 0 10px;
   text-decoration: none;
-  color: white;
+  color: #444;
   font-weight: bold;
 }
 
@@ -54,7 +54,7 @@ main {
   margin-top: 1rem;
   padding: 0.75rem 1.5rem;
   background: #d7edcf;
-  color: white;
+  color: #444;
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
@@ -152,7 +152,7 @@ button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   background: #d7edcf;
-  color: white;
+  color: #444;
   text-decoration: none;
   border: none;
   border-radius: 8px;
