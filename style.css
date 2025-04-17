@@ -172,3 +172,15 @@ form .button:hover,
 button:hover {
   background-color: #b7d7ae;
 }
+
+.card a {
+  color: #444;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
