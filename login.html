@@ -4,15 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login | E-School</title>
+  <link rel="stylesheet" href="/e-school/style.css" />
   <script type="module" src="login.js"></script>
 </head>
 <body>
-  <h1>Login to E-School</h1>
-  <form id="login-form">
-    <label>Email: <input type="email" id="email" required></label><br><br>
-    <label>Password: <input type="password" id="password" required></label><br><br>
-    <button type="submit">Login</button>
-  </form>
-  <p id="error" style="color: red;"></p>
+  <header>
+    <h1>E-School Login</h1>
+    <p class="tagline">Ontario Curriculum-Based Online Learning</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="login.html" class="active">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="course-overview">
+      <h2>Login to Your Dashboard</h2>
+      <form id="login-form">
+        <label>Email:</label><br />
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label>Password:</label><br />
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit" class="button">Login</button>
+      </form>
+      <p id="error" style="color: red; margin-top: 1rem;"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 E-School | Made with ❤️ in Ontario</p>
+  </footer>
 </body>
 </html>
