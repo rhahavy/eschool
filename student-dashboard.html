@@ -3,23 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Student Dashboard</title>
+  <title>Student Dashboard | E-School</title>
   <link rel="stylesheet" href="/e-school/style.css" />
 </head>
 <body>
   <header>
     <h1>Welcome to Your Dashboard</h1>
+    <p class="tagline">Ontario Curriculum-Based Online Learning</p>
     <nav>
       <a href="index.html">Home</a>
       <a href="courses.html">Courses</a>
-      <a href="logout.html">Logout</a> <!-- optional logout -->
+      <a href="logout.html">Logout</a>
     </nav>
   </header>
 
   <main>
-    <section>
-      <p>This is your student dashboard. You’re successfully logged in!</p>
-      <!-- Future: show assignments, grades, etc. -->
+    <section class="course-overview">
+      <h2>Hello, Student!</h2>
+      <p>You’re successfully logged in.</p>
+      <p>Here you’ll find links to your assignments, grades, and course progress.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h4><a href="grade6-science.html">Go to Grade 6 Science</a></h4>
+          <p>Continue lessons or submit your assignments.</p>
+        </div>
+        <div class="card">
+          <h4><a href="assignment1-rock-layers.html">Assignment 1</a></h4>
+          <p>Submit your rock layer diagram.</p>
+        </div>
+        <!-- Add more dashboard cards here -->
+      </div>
     </section>
   </main>
 
