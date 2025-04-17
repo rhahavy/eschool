@@ -11,7 +11,7 @@ body {
 }
 
 header {
-  background: #4a90e2;
+  background: #d7edcf;
   color: white;
   padding: 2rem;
   text-align: center;
@@ -53,7 +53,7 @@ main {
   display: inline-block;
   margin-top: 1rem;
   padding: 0.75rem 1.5rem;
-  background: #4a90e2;
+  background: #d7edcf;
   color: white;
   text-decoration: none;
   border-radius: 8px;
@@ -90,7 +90,7 @@ main {
 
 .card h4 {
   margin-bottom: 0.5rem;
-  color: #4a90e2;
+  color: #d7edcf;
 }
 
 .card p {
@@ -151,7 +151,7 @@ form .button,
 button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  background: #4a90e2;
+  background: #d7edcf;
   color: white;
   text-decoration: none;
   border: none;
@@ -163,6 +163,5 @@ button {
 
 form .button:hover,
 button:hover {
-  background-color: #357ac9;
+  background-color: #b7d7ae;
 }
-
