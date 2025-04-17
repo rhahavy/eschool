@@ -1,5 +1,1 @@
-function showSection(id) {
-  const sections = document.querySelectorAll("main section");
-  sections.forEach(section => section.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
+// You can add interactivity later here (like dark mode or loading courses dynamically)
