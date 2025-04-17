@@ -2,49 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E-School | Grade 6 Science</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to E-School</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Grade 6 Science</h1>
+    <h1>E-School</h1>
+    <p class="tagline">Ontario Curriculum-Based Online Learning</p>
     <nav>
-      <button onclick="showSection('overview')">Overview</button>
-      <button onclick="showSection('lessons')">Lessons</button>
-      <button onclick="showSection('assignments')">Assignments</button>
+      <a href="index.html" class="active">Home</a>
+      <a href="#">Courses</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
     </nav>
   </header>
 
   <main>
-    <section id="overview" class="active">
-      <h2>Course Overview</h2>
-      <p>This course explores earth sciences, ecosystems, and more. Based on the Ontario curriculum.</p>
+    <section class="hero">
+      <h2>Empowering Students Through Online Education</h2>
+      <p>Our self-paced courses align with Ontario curriculum expectations, designed for Grades 1 to 12.</p>
+      <a href="#" class="button">Browse Courses</a>
     </section>
 
-    <section id="lessons">
-      <h2>Weekly Lessons</h2>
-      <ul>
-        <li><strong>Week 1:</strong> Intro to Tectonic Plates</li>
-        <li><strong>Week 2:</strong> Earth's Layers</li>
-        <li><strong>Week 3:</strong> Weather & Climate</li>
-      </ul>
-    </section>
-
-    <section id="assignments">
-      <h2>Assignments</h2>
-      <ul>
-        <li>
-          <strong>Assignment 1:</strong> Rock Layers Journal
-          <br>Due: April 30
-        </li>
-        <li>
-          <strong>Assignment 2:</strong> Weather Report Presentation
-          <br>Due: May 10
-        </li>
-      </ul>
+    <section class="features">
+      <h3>Featured Subjects</h3>
+      <div class="grid">
+        <div class="card">
+          <h4>Grade 6 Science</h4>
+          <p>Explore earth sciences, ecosystems, weather patterns and more.</p>
+        </div>
+        <div class="card">
+          <h4>Grade 9 English</h4>
+          <p>Build critical thinking, reading, and writing skills aligned with ENG1D expectations.</p>
+        </div>
+        <div class="card">
+          <h4>Grade 10 Civics</h4>
+          <p>Learn about Canadian democracy, government systems, and active citizenship.</p>
+        </div>
+      </div>
     </section>
   </main>
+
+  <footer>
+    <p>&copy; 2025 E-School | Made with ❤️ in Ontario</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
