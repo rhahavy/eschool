@@ -1,36 +1,84 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  background: #f9f9f9;
+  background: #f7f8fa;
   color: #333;
 }
 
 header {
   background: #4a90e2;
   color: white;
-  padding: 1rem;
+  padding: 2rem;
   text-align: center;
 }
 
-nav button {
-  margin: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: white;
-  color: #4a90e2;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+header .tagline {
+  font-style: italic;
+  margin-top: 0.5rem;
 }
 
-main {
+nav {
+  margin-top: 1rem;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+nav a.active,
+nav a:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: #fff;
+}
+
+.hero .button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #4a90e2;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.features {
   padding: 2rem;
+  text-align: center;
 }
 
-section {
-  display: none;
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
-section.active {
-  display: block;
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 1rem;
+  width: 250px;
+  text-align: left;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #e9ecf0;
+  margin-top: 2rem;
 }
