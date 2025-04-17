@@ -71,13 +71,6 @@ main {
   margin-bottom: 1rem;
 }
 
-.features {
-  padding: 2rem;
-  background: #ffffff;
-  text-align: center;
-  border-top: 1px solid #ccc;
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -105,19 +98,7 @@ main {
   font-size: 0.95rem;
 }
 
-
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.card {
-  background: white;
-
-  .course-overview,
+.course-overview,
 .course-lessons,
 .course-assignments {
   padding: 2rem;
@@ -138,4 +119,3 @@ main {
 .course-assignments li {
   margin-bottom: 1rem;
 }
-
