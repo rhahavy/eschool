@@ -71,6 +71,41 @@ main {
   margin-bottom: 1rem;
 }
 
+.features {
+  padding: 2rem;
+  background: #ffffff;
+  text-align: center;
+  border-top: 1px solid #ccc;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-items: center;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  max-width: 300px;
+  text-align: left;
+}
+
+.card h4 {
+  margin-bottom: 0.5rem;
+  color: #4a90e2;
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+
 .grid {
   display: flex;
   flex-wrap: wrap;
