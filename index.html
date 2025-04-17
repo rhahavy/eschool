@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-School | Grade 6 Science</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Grade 6 Science</h1>
+    <nav>
+      <button onclick="showSection('overview')">Overview</button>
+      <button onclick="showSection('lessons')">Lessons</button>
+      <button onclick="showSection('assignments')">Assignments</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="overview" class="active">
+      <h2>Course Overview</h2>
+      <p>This course explores earth sciences, ecosystems, and more. Based on the Ontario curriculum.</p>
+    </section>
+
+    <section id="lessons">
+      <h2>Weekly Lessons</h2>
+      <ul>
+        <li><strong>Week 1:</strong> Intro to Tectonic Plates</li>
+        <li><strong>Week 2:</strong> Earth's Layers</li>
+        <li><strong>Week 3:</strong> Weather & Climate</li>
+      </ul>
+    </section>
+
+    <section id="assignments">
+      <h2>Assignments</h2>
+      <ul>
+        <li>
+          <strong>Assignment 1:</strong> Rock Layers Journal
+          <br>Due: April 30
+        </li>
+        <li>
+          <strong>Assignment 2:</strong> Weather Report Presentation
+          <br>Due: May 10
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
