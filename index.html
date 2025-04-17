@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <base href="/e-school/">
   <title>Welcome to E-School</title>
-  <link rel="stylesheet" href="./style.css" />
+
+  <!-- FIXED: Use absolute path so GitHub Pages can load it properly -->
+  <link rel="stylesheet" href="/e-school/style.css" />
 </head>
 <body>
   <header>
@@ -13,7 +14,7 @@
     <p class="tagline">Ontario Curriculum-Based Online Learning</p>
     <nav>
       <a href="index.html" class="active">Home</a>
-      <a href="courses.html" class="button">Browse Courses</a>
+      <a href="courses.html">Courses</a>
       <a href="#">About</a>
       <a href="#">Contact</a>
     </nav>
@@ -23,7 +24,7 @@
     <section class="hero">
       <h2>Empowering Students Through Online Education</h2>
       <p>Our self-paced courses align with Ontario curriculum expectations, designed for Grades 1 to 12.</p>
-      <a href="grade6-science.html" class="button">Browse Courses</a>
+      <a href="courses.html" class="button">Browse Courses</a>
     </section>
 
     <section class="features">
@@ -49,6 +50,6 @@
     <p>&copy; 2025 E-School | Made with ❤️ in Ontario</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="/e-school/script.js"></script>
 </body>
 </html>
