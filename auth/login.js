@@ -1,23 +1,8 @@
-// Import Firebase functions
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-
-// Your Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyAIlkCuaWm1YkomfGape6zl2z7aJrRzwJw",
-  authDomain: "eschool-gradebook.firebaseapp.com",
-  projectId: "eschool-gradebook",
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-// Firebase imports
+// Import Firebase (only once!)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
-// Your Firebase config
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAIlkCuaWm1YkomfGape6zl2z7aJrRzwJw",
   authDomain: "eschool-gradebook.firebaseapp.com",
@@ -28,26 +13,11 @@ const firebaseConfig = {
   measurementId: "G-CRTK5FD726"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // Login handler
-const form = document.getElementById('login-form');
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const email = form.email.value;
-  const password = form.password.value;
-
-  signInWithEmailAndPassword(auth, email, password)
-    .then(userCredential => {
-      alert("Login successful!");
-      window.location.href = "student-dashboard.html"; // redirect after login
-    })
-    .catch(error => {
-      document.getElementById('error').innerText = error.message;
-    });
-});
-
 const loginForm = document.getElementById("login-form");
 const errorDisplay = document.getElementById("error");
 
@@ -58,11 +28,13 @@ loginForm.addEventListener("submit", function (e) {
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Redirect on success
-      window.location.href = "/dashboards/student-dashboard.html";
+      // ✅ Set login flag
+      localStorage.setItem("loggedIn", "true");
+
+      // ✅ Redirect on success
+      window.location.href = "/eschool/dashboards/student-dashboard.html";
     })
     .catch((error) => {
       errorDisplay.textContent = "Login failed: " + error.message;
     });
 });
-
