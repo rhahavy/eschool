@@ -4,10 +4,10 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  apiKey: "AIzaSyAIlkCuaWm1YkomfGape6zl2z7aJrRzwJw",
+  authDomain: "eschool-gradebook.firebaseapp.com",
+  projectId: "eschool-gradebook",
+  storageBucket: "eschool-gradebook.appspot.com",
   messagingSenderId: "YOUR_SENDER_ID",
   appId: "YOUR_APP_ID"
 };
