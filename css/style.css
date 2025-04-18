@@ -149,3 +149,32 @@ button:hover {
   background-color: #c0dfb9;
 }
 
+.dashboard-header {
+  background-color: #eaf6e2;
+  padding: 2rem 1rem;
+  border-bottom: 1px solid #ccc;
+  margin-top: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+
+.dashboard-header .header-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.dashboard-header h2 {
+  margin: 0.5rem 0;
+}
+
+#logout-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #d7edcf;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
