@@ -47,3 +47,22 @@ form.addEventListener('submit', (e) => {
       document.getElementById('error').innerText = error.message;
     });
 });
+
+const loginForm = document.getElementById("login-form");
+const errorDisplay = document.getElementById("error");
+
+loginForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const email = loginForm.email.value;
+  const password = loginForm.password.value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Redirect on success
+      window.location.href = "/dashboards/student-dashboard.html";
+    })
+    .catch((error) => {
+      errorDisplay.textContent = "Login failed: " + error.message;
+    });
+});
+
