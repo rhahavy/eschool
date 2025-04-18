@@ -37,40 +37,63 @@ onAuthStateChanged(auth, async (user) => {
     const totalLessons = allCards.length;
     let completedCount = 0;
 
+    // Initial setup
     allCards.forEach((card) => {
       const lessonId = card.getAttribute("data-lesson-id");
       const checkmark = card.querySelector(".checkmark");
       const button = card.querySelector(".complete-btn");
 
-      if (completed[lessonId]) {
+      const isCompleted = completed[lessonId];
+
+      if (isCompleted) {
         completedCount++;
         checkmark.style.display = "inline";
-        button.style.display = "none";
+        button.textContent = "Undo";
+        button.classList.add("undo");
+      } else {
+        button.textContent = "Mark Complete";
+        button.classList.remove("undo");
       }
 
-      // ✅ Handle click on "Mark Complete"
+      // Toggle functionality
       button.addEventListener("click", async () => {
+        const nowCompleted = !completed[lessonId];
+
         await updateDoc(userRef, {
-          [`completedLessons.${lessonId}`]: true
+          [`completedLessons.${lessonId}`]: nowCompleted
         });
 
+        // Update local state
+        completed[lessonId] = nowCompleted;
+
         // Update UI
-        checkmark.style.display = "inline";
-        button.style.display = "none";
+        if (nowCompleted) {
+          checkmark.style.display = "inline";
+          button.textContent = "Undo";
+          button.classList.add("undo");
+          completedCount++;
+        } else {
+          checkmark.style.display = "none";
+          button.textContent = "Mark Complete";
+          button.classList.remove("undo");
+          completedCount--;
+        }
 
         // Update progress bar
-        completedCount++;
         const newPercent = Math.round((completedCount / totalLessons) * 100);
         document.getElementById("progress-fill").style.width = `${newPercent}%`;
-        document.getElementById("progress-text").innerText = `${completedCount} of ${totalLessons} lessons completed`;
+        document.getElementById("progress-text").innerText =
+          `${completedCount} of ${totalLessons} lessons completed` +
+          (completedCount === totalLessons ? " 🎉 All done!" : "");
       });
     });
 
-    // ✅ Initial progress bar update
+    // Initial progress bar
     const percent = Math.round((completedCount / totalLessons) * 100);
     document.getElementById("progress-fill").style.width = `${percent}%`;
-    document.getElementById("progress-text").innerText = `${completedCount} of ${totalLessons} lessons completed`;
-
+    document.getElementById("progress-text").innerText =
+      `${completedCount} of ${totalLessons} lessons completed` +
+      (completedCount === totalLessons ? " 🎉 All done!" : "");
   } else {
     document.getElementById("welcome").innerText = `Welcome, Student`;
   }
