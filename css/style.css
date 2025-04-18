@@ -156,3 +156,13 @@ nav a:hover {
   transition: width 0.5s ease-in-out;
 }
 
+.complete-btn.undo {
+  background-color: #f9dcdc;
+  color: #a33;
+}
+
+.complete-btn.undo:hover {
+  background-color: #f4c6c6;
+}
+
+
