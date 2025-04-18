@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login | E-School</title>
-<link rel="stylesheet" href="/e-school/css/style.css" />
-  <script type="module" src="login.js"></script>
+ <div id="main-header"></div>
+<script>
+  fetch("/eschool/components/nav.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("main-header").innerHTML = data;
+    });
+</script>
 </head>
 <body>
   <header>
