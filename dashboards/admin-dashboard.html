@@ -2,14 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Teacher Dashboard | E-School</title>
-  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="/eschool/css/style.css" />
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("/eschool/components/nav.html")
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById("main-header").innerHTML = data;
+        });
+    });
+  </script>
   <style>
     .dashboard-container {
       max-width: 1200px;
       margin: 2rem auto;
       padding: 1rem;
+    }
+
+    .page-header {
+      background-color: #e0f8e9;
+      padding: 1.5rem;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .status-message {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin: 1rem 0;
     }
 
     table {
@@ -33,10 +55,6 @@
       font-size: 0.9rem;
     }
 
-    input[type="checkbox"] {
-      transform: scale(1.2);
-    }
-
     input[type="text"] {
       width: 60px;
       padding: 5px;
@@ -45,37 +63,28 @@
       text-align: center;
     }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .status-message {
-      text-align: center;
-      color: green;
+    button.save-btn {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #d7edcf;
+      cursor: pointer;
       font-weight: bold;
-      margin: 1rem 0;
+      margin-left: 6px;
     }
   </style>
 </head>
 <body>
-  <!-- ✅ Navigation loader -->
+  <!-- ✅ Navbar will be injected -->
   <div id="main-header"></div>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      fetch("../components/nav.html")
-        .then(res => res.text())
-        .then(data => {
-          document.getElementById("main-header").innerHTML = data;
-        });
-    });
-  </script>
 
-  <!-- ✅ Main content -->
+  <header class="page-header">
+    <h2>Teacher Dashboard</h2>
+    <p class="tagline">Track and grade student progress</p>
+  </header>
+
   <div class="dashboard-container">
-    <h1>Teacher Dashboard</h1>
     <p class="status-message" id="statusMessage"></p>
-
     <table>
       <thead>
         <tr>
@@ -87,12 +96,15 @@
         </tr>
       </thead>
       <tbody id="student-table-body">
-        <!-- Dynamically populated by JS -->
+        <!-- Populated by JS -->
       </tbody>
     </table>
   </div>
 
-  <!-- ✅ Admin dashboard script -->
-  <script type="module" src="../js/admin-dashboard.js"></script>
+  <footer>
+    <p>&copy; 2025 E-School | Made with ❤️ in Ontario</p>
+  </footer>
+
+  <script type="module" src="/eschool/js/admin-dashboard.js"></script>
 </body>
 </html>
