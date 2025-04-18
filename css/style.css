@@ -125,4 +125,17 @@ nav a:hover {
   text-decoration: underline;
 }
 
+.complete-btn {
+  margin-top: 0.5rem;
+  padding: 6px 12px;
+  background-color: #d7edcf;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.complete-btn:hover {
+  background-color: #c0dfb9;
+}
 
