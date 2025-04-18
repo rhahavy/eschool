@@ -28,10 +28,11 @@ loginForm.addEventListener("submit", function (e) {
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // ✅ Set login flag
+      // ✅ Save login and user email
       localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("userEmail", email);
 
-      // ✅ Redirect on success
+      // ✅ Redirect to student dashboard
       window.location.href = "/eschool/dashboards/student-dashboard.html";
     })
     .catch((error) => {
