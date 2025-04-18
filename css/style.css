@@ -139,3 +139,13 @@ footer {
   border-radius: 10px;
   transition: width 0.5s ease-in-out;
 }
+
+button {
+  font-family: 'Segoe UI', sans-serif;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #c0dfb9;
+}
+
