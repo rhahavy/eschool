@@ -1,10 +1,8 @@
-// /eschool/js/student-dashboard.js
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-// Firebase config
+// ✅ Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAIlkCuaWm1YkomfGape6zl2z7aJrRzwJw",
   authDomain: "eschool-gradebook.firebaseapp.com",
@@ -15,14 +13,13 @@ const firebaseConfig = {
   measurementId: "G-CRTK5FD726"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    window.location.href = "/eschool/auth/login.html";
+    window.location.href = "../auth/login.html";
     return;
   }
 
@@ -41,7 +38,6 @@ onAuthStateChanged(auth, async (user) => {
     const totalLessons = allCards.length;
     let completedCount = 0;
 
-    // Initial setup
     allCards.forEach((card) => {
       const lessonId = card.getAttribute("data-lesson-id");
       const checkmark = card.querySelector(".checkmark");
@@ -59,7 +55,6 @@ onAuthStateChanged(auth, async (user) => {
         button.classList.remove("undo");
       }
 
-      // Toggle functionality
       button.addEventListener("click", async () => {
         const nowCompleted = !completed[lessonId];
 
@@ -67,10 +62,8 @@ onAuthStateChanged(auth, async (user) => {
           [`completedLessons.${lessonId}`]: nowCompleted
         });
 
-        // Update local state
         completed[lessonId] = nowCompleted;
 
-        // Update UI
         if (nowCompleted) {
           checkmark.style.display = "inline";
           button.textContent = "Undo";
@@ -83,7 +76,6 @@ onAuthStateChanged(auth, async (user) => {
           completedCount--;
         }
 
-        // Update progress bar
         const newPercent = Math.round((completedCount / totalLessons) * 100);
         document.getElementById("progress-fill").style.width = `${newPercent}%`;
         document.getElementById("progress-text").innerText =
@@ -92,20 +84,18 @@ onAuthStateChanged(auth, async (user) => {
       });
     });
 
-    // Initial progress bar
     const percent = Math.round((completedCount / totalLessons) * 100);
     document.getElementById("progress-fill").style.width = `${percent}%`;
     document.getElementById("progress-text").innerText =
       `${completedCount} of ${totalLessons} lessons completed` +
       (completedCount === totalLessons ? " 🎉 All done!" : "");
   } else {
-    document.getElementById("welcome").innerText = `Welcome, Student`;
+    document.getElementById("welcome").innerText = "Welcome, Student";
   }
 });
 
-// Logout
 document.getElementById("logout-btn").addEventListener("click", () => {
   signOut(auth).then(() => {
-    window.location.href = "/eschool/auth/login.html";
+    window.location.href = "../auth/login.html";
   });
 });
