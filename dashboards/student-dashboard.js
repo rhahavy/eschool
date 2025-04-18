@@ -9,6 +9,10 @@ const firebaseConfig = {
   apiKey: "AIzaSyAIlkCuaWm1YkomfGape6zl2z7aJrRzwJw",
   authDomain: "eschool-gradebook.firebaseapp.com",
   projectId: "eschool-gradebook",
+  storageBucket: "eschool-gradebook.firebasestorage.app",
+  messagingSenderId: "37242341415",
+  appId: "1:37242341415:web:5cc1863e6615874d84a602",
+  measurementId: "G-CRTK5FD726"
 };
 
 // Initialize Firebase
