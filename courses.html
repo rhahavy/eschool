@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>All Courses | E-School</title>
+ <div id="main-header"></div>
+<script>
+  fetch("/eschool/components/nav.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("main-header").innerHTML = data;
+    });
+</script>
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
