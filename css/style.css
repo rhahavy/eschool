@@ -1,3 +1,4 @@
+/* ========== Base Styles ========== */
 * {
   box-sizing: border-box;
 }
@@ -10,86 +11,15 @@ body {
   color: #444;
 }
 
+/* ========== Header ========== */
 header {
-  background: #d7edcf;
-  padding: 2rem;
-  text-align: center;
-}
-
-header .tagline {
-  font-style: italic;
-  margin-top: 0.5rem;
-}
-
-nav {
-  margin-top: 1rem;
-}
-
-nav a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #444;
-  font-weight: bold;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-main {
-  padding: 2rem;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-  justify-items: center;
-}
-
-.card {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  max-width: 300px;
-}
-
-.button {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  background: #d7edcf;
-  color: #444;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-}
-
-main {
-  padding: 2rem;
-  text-align: center;
-}
-.card {
-  text-align: center;
-}
-footer {
-  text-align: center;
-}
-nav {
-  margin-top: 1rem;
-  text-align: center;
-}
-/* Header styles */
-header {
-  background: #d7edcf;
+  background: linear-gradient(to bottom, #f6fbf2, #d7edcf);
   padding: 2.5rem 2rem 1rem;
   text-align: center;
-  border-bottom: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-bottom: 1px solid #bbb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Style just the header title */
 header h1 {
   font-size: 2rem;
   margin: 0;
@@ -97,7 +27,6 @@ header h1 {
   letter-spacing: 0.5px;
 }
 
-/* Tagline (subtitle) */
 header .tagline {
   font-style: italic;
   font-size: 1rem;
@@ -105,10 +34,11 @@ header .tagline {
   color: #555;
 }
 
-/* Navigation bar styles */
+/* ========== Navigation ========== */
 nav {
   margin-top: 1rem;
   padding-top: 1rem;
+  text-align: center;
   border-top: 1px solid #ccc;
 }
 
@@ -125,26 +55,80 @@ nav a:hover {
   text-decoration: underline;
 }
 
-.complete-btn {
-  margin-top: 0.5rem;
-  padding: 6px 12px;
-  background-color: #d7edcf;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
+/* ========== Main Layout ========== */
+main {
+  padding: 2rem;
+  text-align: center;
 }
 
-.complete-btn:hover {
+footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* ========== Cards ========== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  max-width: 300px;
+  text-align: center;
+}
+
+/* ========== Buttons ========== */
+.button,
+.complete-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #d7edcf;
+  color: #444;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.complete-btn {
+  padding: 6px 12px;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+}
+
+.complete-btn:hover,
+.button:hover {
   background-color: #c0dfb9;
 }
 
+/* Undo styling */
+.complete-btn.undo {
+  background-color: #f9dcdc;
+  color: #a33;
+}
+
+.complete-btn.undo:hover {
+  background-color: #f4c6c6;
+}
+
+/* ========== Progress Bar ========== */
 .progress-bar-container {
   width: 100%;
   height: 20px;
   background-color: #e0e0e0;
   border-radius: 10px;
-  margin: 10px 0;
+  margin: 10px 0 20px;
   overflow: hidden;
 }
 
@@ -155,23 +139,3 @@ nav a:hover {
   border-radius: 10px;
   transition: width 0.5s ease-in-out;
 }
-
-.complete-btn.undo {
-  background-color: #f9dcdc;
-  color: #a33;
-}
-
-.complete-btn.undo:hover {
-  background-color: #f4c6c6;
-}
-
-header {
-  background: #eaf6e2; /* lighter green for contrast */
-  padding: 2.5rem 2rem 1rem;
-  text-align: center;
-  border-bottom: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* adds gentle separation */
-}
-
-
-
