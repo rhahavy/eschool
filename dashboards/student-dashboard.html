@@ -1,29 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <div id="main-header"></div>
-<script>
-  fetch("/eschool/components/nav.html")
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById("main-header").innerHTML = data;
-    });
-</script>
-   <link rel="stylesheet" href="/eschool/css/style.css" />
-</head>
-  <script>
-  // Block access if not logged in
-  if (localStorage.getItem("loggedIn") !== "true") {
-    window.location.href = "/eschool/auth/login.html";
-  }
+  <meta charset="UTF-8" />
+  <title>Student Dashboard | E-School</title>
+  <link rel="stylesheet" href="/eschool/css/style.css" />
 
-  // Show user's email
-  const userEmail = localStorage.getItem("userEmail");
-  if (userEmail) {
-    document.getElementById("welcome").innerText = `Welcome, ${userEmail}!`;
-  }
-</script>
+  <!-- Inject Navigation -->
+  <script>
+    fetch("/eschool/components/nav.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("main-header").innerHTML = data;
+      });
+  </script>
+
+  <!-- Protect Page / Fetch First Name -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAIlkCuaWm1YkomfGape6zl2z7aJrRzwJw",
+      authDomain: "eschool-gradebook.firebaseapp.com",
+      projectId: "eschool-gradebook",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const uid = user.uid;
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          document.getElementById("welcome").innerText = `Welcome, ${data.firstName}`;
+        } else {
+          document.getElementById("welcome").innerText = `Welcome, Student`;
+        }
+      } else {
+        // Not logged in? Redirect to login
+        window.location.href = "/eschool/auth/login.html";
+      }
+    });
+  </script>
+</head>
+
 <body>
+  <!-- Navigation placeholder -->
+  <div id="main-header"></div>
+
   <header>
     <h2>Welcome to Your Dashboard</h2>
     <p class="tagline">Ontario Curriculum-Based Online Learning</p>
@@ -31,7 +61,7 @@
 
   <main>
     <section class="course-overview">
-   <h2 id="welcome">Hello, Student!</h2>
+      <h2 id="welcome">Hello, Student!</h2>
       <p>You’re successfully logged in.</p>
       <p>Here you’ll find links to your assignments, grades, and course progress.</p>
 
@@ -41,10 +71,9 @@
           <p>Continue lessons or submit your assignments.</p>
         </div>
         <div class="card">
-          <h4><a href="eschool/courses/Grade6/Science/assignment1-rock-layers.html">Assignment 1</a></h4>
+          <h4><a href="/eschool/courses/Grade6/Science/assignment1-rock-layers.html">Assignment 1</a></h4>
           <p>Submit your rock layer diagram.</p>
         </div>
-        <!-- Add more dashboard cards here -->
       </div>
     </section>
   </main>
