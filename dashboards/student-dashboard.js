@@ -39,6 +39,24 @@ onAuthStateChanged(auth, async (user) => {
       const checkmark = card.querySelector(".checkmark");
       const button = card.querySelector(".complete-btn");
 
+      // ⬇️ Progress Bar Calculation
+const allCards = document.querySelectorAll(".card");
+const totalLessons = allCards.length;
+let completedCount = 0;
+
+allCards.forEach((card) => {
+  const lessonId = card.getAttribute("data-lesson-id");
+  if (completed[lessonId]) {
+    completedCount++;
+  }
+});
+
+// Update progress bar
+const percent = Math.round((completedCount / totalLessons) * 100);
+document.getElementById("progress-fill").style.width = `${percent}%`;
+document.getElementById("progress-text").innerText = `${completedCount} of ${totalLessons} lessons completed`;
+
+
       // Show ✅ if completed
       if (completed[lessonId]) {
         checkmark.style.display = "inline";
