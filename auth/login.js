@@ -4,7 +4,7 @@ import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/fir
 
 // Firebase config
 const firebaseConfig = {
-  apiKey: "AIzaSyAIlkCuaWm1YkomfGape6zl2z7aJrRzwJw",
+   apiKey: "AIzaSyAIlkCuaWm1YkomfGape6zl2z7aJrRzwJw",
   authDomain: "eschool-gradebook.firebaseapp.com",
   projectId: "eschool-gradebook",
   storageBucket: "eschool-gradebook.firebasestorage.app",
