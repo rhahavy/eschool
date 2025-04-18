@@ -48,3 +48,5 @@ logoutBtn.addEventListener("click", () => {
     window.location.href = "/eschool/auth/login.html";
   });
 });
+
+const button = card.querySelector(".complete-btn");
