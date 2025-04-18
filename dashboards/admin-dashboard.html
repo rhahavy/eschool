@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Teacher Dashboard | E-School</title>
-  <link rel="stylesheet" href="/eschool/css/style.css" />
+  <link rel="stylesheet" href="../css/style.css" />
   <style>
     .dashboard-container {
       max-width: 1200px;
@@ -58,6 +59,19 @@
   </style>
 </head>
 <body>
+  <!-- ✅ Navigation loader -->
+  <div id="main-header"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("../components/nav.html")
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById("main-header").innerHTML = data;
+        });
+    });
+  </script>
+
+  <!-- ✅ Main content -->
   <div class="dashboard-container">
     <h1>Teacher Dashboard</h1>
     <p class="status-message" id="statusMessage"></p>
@@ -78,7 +92,7 @@
     </table>
   </div>
 
-  <script type="module" src="/eschool/js/admin-dashboard.js"></script>
+  <!-- ✅ Admin dashboard script -->
+  <script type="module" src="../js/admin-dashboard.js"></script>
 </body>
 </html>
-
