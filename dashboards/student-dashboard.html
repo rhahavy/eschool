@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <title>Student Dashboard | E-School</title>
-  <link rel="stylesheet" href="/eschool/css/style.css" />
+  <link rel="stylesheet" href="../css/style.css" />
   <style>
     body {
-      display: none; /* Hide page until auth is confirmed */
+      display: none; /* Hide until auth is confirmed */
     }
   </style>
 </head>
@@ -28,30 +28,30 @@
       <p>Here you’ll find links to your assignments, grades, and course progress.</p>
 
       <section class="progress-section">
-  <p id="progress-text">Loading progress...</p>
-  <div class="progress-bar-container">
-    <div class="progress-bar-fill" id="progress-fill"></div>
-  </div>
-</section>
+        <p id="progress-text">Loading progress...</p>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+      </section>
 
       <div class="grid">
-       <div class="card" data-lesson-id="grade6-science">
-  <h4>
-    <a href="/eschool/courses/Grade6/Science/grade6-science.html">Go to Grade 6 Science</a>
-    <span class="checkmark" style="display: none;">✅</span>
-  </h4>
-  <p>Continue lessons or submit your assignments.</p>
-  <button class="complete-btn">Mark Complete</button>
-</div>
+        <div class="card" data-lesson-id="grade6-science">
+          <h4>
+            <a href="../courses/Grade6/Science/grade6-science.html">Go to Grade 6 Science</a>
+            <span class="checkmark" style="display: none;">✅</span>
+          </h4>
+          <p>Continue lessons or submit your assignments.</p>
+          <button class="complete-btn">Mark Complete</button>
+        </div>
 
-<div class="card" data-lesson-id="assignment1-rock-layers">
-  <h4>
-    <a href="/eschool/courses/Grade6/Science/assignment1-rock-layers.html">Assignment 1</a>
-    <span class="checkmark" style="display: none;">✅</span>
-  </h4>
-  <p>Submit your rock layer diagram.</p>
-  <button class="complete-btn">Mark Complete</button>
-</div>
+        <div class="card" data-lesson-id="assignment1-rock-layers">
+          <h4>
+            <a href="../courses/Grade6/Science/assignment1-rock-layers.html">Assignment 1</a>
+            <span class="checkmark" style="display: none;">✅</span>
+          </h4>
+          <p>Submit your rock layer diagram.</p>
+          <button class="complete-btn">Mark Complete</button>
+        </div>
       </div>
     </section>
   </main>
@@ -60,10 +60,9 @@
     <p>&copy; 2025 E-School | Made with ❤️ in Ontario</p>
   </footer>
 
-  <!-- Load navigation after DOM is ready -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      fetch("/eschool/components/nav.html")
+      fetch("../components/nav.html")
         .then(res => res.text())
         .then(data => {
           document.getElementById("main-header").innerHTML = data;
@@ -71,7 +70,7 @@
     });
   </script>
 
-  <!-- ✅ External Firebase auth & dashboard logic only -->
-  <script type="module" src="/eschool/js/student-dashboard.js"></script>
+  <!-- ✅ Correct relative path -->
+  <script type="module" src="../js/student-dashboard.js"></script>
 </body>
 </html>
