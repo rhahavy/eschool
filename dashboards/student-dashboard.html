@@ -11,6 +11,18 @@
 </script>
    <link rel="stylesheet" href="/eschool/css/style.css" />
 </head>
+  <script>
+  // Block access if not logged in
+  if (localStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "/eschool/auth/login.html";
+  }
+
+  // Show user's email
+  const userEmail = localStorage.getItem("userEmail");
+  if (userEmail) {
+    document.getElementById("welcome").innerText = `Welcome, ${userEmail}!`;
+  }
+</script>
 <body>
   <header>
     <h2>Welcome to Your Dashboard</h2>
