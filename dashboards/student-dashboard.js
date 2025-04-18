@@ -1,4 +1,5 @@
-// student-dashboard.js
+// /eschool/js/student-dashboard.js
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
@@ -10,12 +11,12 @@ const firebaseConfig = {
   projectId: "eschool-gradebook",
 };
 
-// Initialize
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Wait for auth state
+// Wait for authentication state
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     document.body.style.display = "block";
@@ -35,12 +36,14 @@ onAuthStateChanged(auth, async (user) => {
       document.getElementById("welcome").innerText = `Welcome, Student`;
     }
   } else {
+    // Not logged in? Redirect to login page
     window.location.href = "/eschool/auth/login.html";
   }
 });
 
-// Logout
-document.getElementById("logout-btn").addEventListener("click", () => {
+// Logout button
+const logoutBtn = document.getElementById("logout-btn");
+logoutBtn.addEventListener("click", () => {
   signOut(auth).then(() => {
     window.location.href = "/eschool/auth/login.html";
   });
