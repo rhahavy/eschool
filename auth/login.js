@@ -19,7 +19,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Login form
 const loginForm = document.getElementById("login-form");
 const errorDisplay = document.getElementById("error");
 
@@ -31,18 +30,19 @@ loginForm.addEventListener("submit", async (e) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
+    console.log("✅ Logged in as:", email);
 
     const userRef = doc(db, "users", user.uid);
     const userSnap = await getDoc(userRef);
 
     if (!userSnap.exists()) {
-      throw new Error("No user profile found in Firestore.");
+      throw new Error("No Firestore profile found for this user.");
     }
 
     const userData = userSnap.data();
-    const role = userData.role || "student";
+    const role = userData.role?.toLowerCase().trim() || "student";
+    console.log("📘 Role detected:", role);
 
-    // ✅ Redirect based on role
     if (role === "admin") {
       window.location.href = "/eschool/dashboards/admin-dashboard.html";
     } else {
@@ -50,6 +50,7 @@ loginForm.addEventListener("submit", async (e) => {
     }
 
   } catch (error) {
+    console.error("❌ Login error:", error.message);
     errorDisplay.textContent = "Login failed: " + error.message;
   }
 });
