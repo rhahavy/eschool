@@ -28,29 +28,34 @@ loginForm.addEventListener("submit", async (e) => {
   const password = loginForm.password.value;
 
   try {
+    console.log("📨 Logging in with:", email);
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
-    console.log("✅ Logged in as:", email);
+    console.log("✅ Firebase Auth success", user.uid);
 
     const userRef = doc(db, "users", user.uid);
     const userSnap = await getDoc(userRef);
 
     if (!userSnap.exists()) {
-      throw new Error("No Firestore profile found for this user.");
+      throw new Error("⚠️ No Firestore profile found.");
     }
 
     const userData = userSnap.data();
-    const role = userData.role?.toLowerCase().trim() || "student";
-    console.log("📘 Role detected:", role);
+    console.log("📘 Firestore data:", userData);
+
+    const role = userData.role || "student";
+    console.log("🎭 Role detected:", role);
 
     if (role === "admin") {
+      console.log("➡️ Redirecting to ADMIN dashboard...");
       window.location.href = "/eschool/dashboards/admin-dashboard.html";
     } else {
+      console.log("➡️ Redirecting to STUDENT dashboard...");
       window.location.href = "/eschool/dashboards/student-dashboard.html";
     }
 
   } catch (error) {
-    console.error("❌ Login error:", error.message);
+    console.error("❌ Login Error:", error);
     errorDisplay.textContent = "Login failed: " + error.message;
   }
 });
