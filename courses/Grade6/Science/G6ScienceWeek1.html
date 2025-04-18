@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<div id="main-header"></div>
-<script>
-  fetch("/eschool/components/nav.html")
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById("main-header").innerHTML = data;
-    });
-</script>
- <link rel="stylesheet" href="/eschool/css/style.css" />
+  <meta charset="UTF-8" />
+  <title>Week 1: Tectonic Plates | Grade 6 Science</title>
+  <link rel="stylesheet" href="/eschool/css/style.css" />
 </head>
+
 <body>
-    <h2>Week 1: Tectonic Plates</h2>
-    <p class="tagline">Grade 6 Science - Earth Systems</p>
+  <!-- Navigation -->
+  <div id="main-header"></div>
+  <script>
+    fetch("/eschool/components/nav.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("main-header").innerHTML = data;
+      });
+  </script>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="header-content">
+      <h2>Week 1: Tectonic Plates</h2>
+      <p class="tagline">Grade 6 Science – Earth Systems</p>
+      <button class="back-btn" onclick="history.back()">← Back</button>
+    </div>
   </header>
 
   <main>
