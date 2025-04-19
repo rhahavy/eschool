@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <title>Grade 6 Science | E-School</title>
   <link rel="stylesheet" href="/eschool/css/style.css" />
+  <style>
+    body {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -73,5 +78,47 @@
   <footer>
     <p>&copy; 2025 E-School | Made with ❤️ in Ontario</p>
   </footer>
+
+  <!-- 🔒 Firebase Auth Protection -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AlzaSyAllkCuaWm1YkomfGape6zl2z7aJrRzwJw",
+      authDomain: "eschool-gradebook.firebaseapp.com",
+      projectId: "eschool-gradebook"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "/eschool/index.html";
+        return;
+      }
+
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (!docSnap.exists()) {
+        window.location.href = "/eschool/index.html";
+        return;
+      }
+
+      const role = docSnap.data().role;
+
+      if (role === "student") {
+        document.body.style.display = "block";
+      } else if (role === "admin") {
+        window.location.href = "/eschool/dashboards/admin-dashboard.html";
+      } else {
+        window.location.href = "/eschool/index.html";
+      }
+    });
+  </script>
 </body>
 </html>
