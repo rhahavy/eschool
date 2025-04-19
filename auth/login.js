@@ -28,7 +28,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ✅ Target your login form and error display
 const loginForm = document.getElementById("login-form");
 const errorDisplay = document.getElementById("error");
 
@@ -39,37 +38,25 @@ loginForm.addEventListener("submit", async (e) => {
   const password = loginForm.password.value;
 
   try {
-    // ✅ Ensure session persists
     await setPersistence(auth, browserLocalPersistence);
-
-    // ✅ Try login
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     console.log("✅ Logged in:", user.uid);
 
-    // ✅ Fetch role from Firestore
     const userDoc = await getDoc(doc(db, "users", user.uid));
-    if (!userDoc.exists()) {
-      throw new Error("No Firestore user profile found.");
-    }
+    if (!userDoc.exists()) throw new Error("No Firestore user profile found.");
 
     const role = userDoc.data().role;
     console.log("🎭 User role:", role);
 
-    // ✅ DEBUG mode – stop here before redirecting
     if (role === "admin") {
-      console.log("✅ Would redirect to admin dashboard");
-      alert("You are admin. Stopping here for debugging.");
-      return;
+      window.location.href = "/eschool/dashboards/admin-dashboard.html";
+    } else if (role === "student") {
+      window.location.href = "/eschool/dashboards/student-dashboard.html";
+    } else {
+      throw new Error("Unrecognized user role.");
     }
 
-    if (role === "student") {
-      console.log("✅ Would redirect to student dashboard");
-      alert("You are student. Stopping here for debugging.");
-      return;
-    }
-
-    throw new Error("Unrecognized user role: " + role);
   } catch (err) {
     console.error("❌ Login failed:", err);
     errorDisplay.textContent = "Login failed: " + err.message;
