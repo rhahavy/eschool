@@ -8,10 +8,9 @@
     body {
       display: none;
     }
-
-    /* Keep your existing styles here... */
   </style>
 </head>
+
 <body>
   <div id="main-header"></div>
 
@@ -19,29 +18,44 @@
     <div class="header-content">
       <h2>Welcome to Your Dashboard</h2>
       <p class="tagline">Ontario Curriculum-Based Online Learning</p>
-      <h2 id="welcome">Welcome, Rhahavy</h2>
+      <h2 id="welcome">Welcome!</h2>
       <button id="logout-btn">Logout</button>
     </div>
   </header>
 
   <main>
-    <!-- your course grid and assignments (unchanged) -->
+    <section class="course-overview">
+      <p>You're logged in. Here's your content.</p>
+    </section>
   </main>
 
   <footer>
     <p>&copy; 2025 E-School | Made with ❤️ in Ontario</p>
   </footer>
 
-  <!-- 🔒 Firebase Auth Check FIRST -->
   <script type="module">
+    console.log("🚀 student-dashboard.html script running");
+
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
     const firebaseConfig = {
-      apiKey: "AlzaSyAllkCuaWm1YkomfGape6zl2z7aJrRzwJw",
+      apiKey: "AIzaSyAIlkCuaWm1YkomfGape6zl2z7aJrRzwJw",
       authDomain: "eschool-gradebook.firebaseapp.com",
-      projectId: "eschool-gradebook"
+      projectId: "eschool-gradebook",
+      storageBucket: "eschool-gradebook.firebasestorage.app",
+      messagingSenderId: "37242341415",
+      appId: "1:37242341415:web:5cc1863e6615874d84a602",
+      measurementId: "G-CRTK5FD726"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -49,7 +63,10 @@
     const db = getFirestore(app);
 
     onAuthStateChanged(auth, async (user) => {
+      console.log("👀 Auth state changed. User:", user);
+
       if (!user) {
+        console.warn("🚫 User not logged in. Redirecting...");
         window.location.href = "/eschool/index.html";
         return;
       }
@@ -58,32 +75,23 @@
       const docSnap = await getDoc(docRef);
 
       if (!docSnap.exists()) {
+        console.warn("❌ No Firestore doc");
         window.location.href = "/eschool/index.html";
         return;
       }
 
       const role = docSnap.data().role;
+      console.log("🎭 Role:", role);
 
-      if (role !== "student") {
+      if (role === "student") {
+        console.log("✅ Student detected, showing dashboard.");
+        document.body.style.display = "block";
+      } else {
+        console.warn("⛔ Not a student. Redirecting...");
         window.location.href = "/eschool/dashboards/admin-dashboard.html";
-        return;
       }
-
-      // ✅ Authenticated and role is student — show page
-      document.body.style.display = "block";
-
-      // ✅ Load navbar AFTER verifying auth
-      fetch("../components/nav.html")
-        .then(res => res.text())
-        .then(data => {
-          document.getElementById("main-header").innerHTML = data;
-          const navbar = document.getElementById("navbar");
-          if (navbar) navbar.style.display = "flex";
-        })
-        .catch(err => console.error("❌ Navbar load error:", err));
     });
 
-    // ✅ Logout functionality
     document.addEventListener("click", (e) => {
       if (e.target.id === "logout-btn") {
         signOut(auth).then(() => {
@@ -92,8 +100,5 @@
       }
     });
   </script>
-
-  <!-- ✅ Dashboard scripts -->
-  <script type="module" src="student-dashboard.js"></script>
 </body>
 </html>
