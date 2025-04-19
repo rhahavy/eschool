@@ -1,10 +1,19 @@
-// /eschool/js/login.js
+// /eschool/auth/login.js
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-// ✅ Firebase config
+// ✅ Full Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAIlkCuaWm1YkomfGape6zl2z7aJrRzwJw",
   authDomain: "eschool-gradebook.firebaseapp.com",
@@ -28,34 +37,28 @@ loginForm.addEventListener("submit", async (e) => {
   const password = loginForm.password.value;
 
   try {
-    console.log("📨 Logging in with:", email);
+    // 🔒 Make sure the session stays active after reload
+    await setPersistence(auth, browserLocalPersistence);
+
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
-    console.log("✅ Firebase Auth success", user.uid);
+    console.log("✅ Logged in:", user.uid);
 
-    const userRef = doc(db, "users", user.uid);
-    const userSnap = await getDoc(userRef);
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+    if (!userDoc.exists()) throw new Error("No Firestore user profile found.");
 
-    if (!userSnap.exists()) {
-      throw new Error("⚠️ No Firestore profile found.");
-    }
-
-    const userData = userSnap.data();
-    console.log("📘 Firestore data:", userData);
-
-    const role = userData.role || "student";
-    console.log("🎭 Role detected:", role);
+    const role = userDoc.data().role;
+    console.log("🎭 User role:", role);
 
     if (role === "admin") {
-      console.log("➡️ Redirecting to ADMIN dashboard...");
       window.location.href = "/eschool/dashboards/admin-dashboard.html";
-    } else {
-      console.log("➡️ Redirecting to STUDENT dashboard...");
+    } else if (role === "student") {
       window.location.href = "/eschool/dashboards/student-dashboard.html";
+    } else {
+      throw new Error("Unrecognized user role.");
     }
-
-  } catch (error) {
-    console.error("❌ Login Error:", error);
-    errorDisplay.textContent = "Login failed: " + error.message;
+  } catch (err) {
+    console.error("❌ Login failed:", err);
+    errorDisplay.textContent = "Login failed: " + err.message;
   }
 });
