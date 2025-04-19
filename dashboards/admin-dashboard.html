@@ -83,6 +83,68 @@
     <p class="tagline">Track and grade student progress</p>
   </header>
 
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // Load nav.html and then check auth
+  fetch("/eschool/components/nav.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("main-header").innerHTML = data;
+
+      const navbar = document.getElementById("navbar");
+      if (navbar) navbar.style.display = "none";
+
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          const uid = user.uid;
+          const docRef = doc(db, "users", uid);
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            const role = docSnap.data().role;
+
+            if (role === "admin") {
+              // ✅ Allow admin dashboard access
+              if (window.location.pathname.includes("student-dashboard.html")) {
+                window.location.href = "/eschool/dashboards/admin-dashboard.html";
+              }
+              navbar.style.display = "flex";
+            } else if (role === "student") {
+              // ✅ Allow student dashboard access
+              if (window.location.pathname.includes("admin-dashboard.html")) {
+                window.location.href = "/eschool/dashboards/student-dashboard.html";
+              }
+              navbar.style.display = "flex";
+            } else {
+              // Unknown role
+              window.location.href = "/eschool/index.html";
+            }
+          } else {
+            // No user record found
+            window.location.href = "/eschool/index.html";
+          }
+        } else {
+          // Not logged in
+          window.location.href = "/eschool/index.html";
+        }
+      });
+    });
+</script>
+
+
   <div class="dashboard-container">
     <p class="status-message" id="statusMessage"></p>
     <table>
