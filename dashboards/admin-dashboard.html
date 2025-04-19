@@ -8,7 +8,8 @@
     body {
       display: none;
     }
-    /* Your styles here (unchanged)... */
+
+    /* Your other styles... */
   </style>
 </head>
 <body>
@@ -43,27 +44,29 @@
 
   <!-- ✅ Firebase Auth + Role Protection -->
   <script type="module">
+    console.log("🚀 admin-dashboard.html script running");
+
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
     const firebaseConfig = {
-  apiKey: "AIzaSyAIlkCuaWm1YkomfGape6zl2z7aJrRzwJw",
-  authDomain: "eschool-gradebook.firebaseapp.com",
-  projectId: "eschool-gradebook",
-  storageBucket: "eschool-gradebook.firebasestorage.app",
-  messagingSenderId: "37242341415",
-  appId: "1:37242341415:web:5cc1863e6615874d84a602",
-  measurementId: "G-CRTK5FD726"
-};
-
+      apiKey: "AIzaSyAIlkCuaWm1YkomfGape6zl2z7aJrRzwJw",
+      authDomain: "eschool-gradebook.firebaseapp.com",
+      projectId: "eschool-gradebook",
+      storageBucket: "eschool-gradebook.firebasestorage.app",
+      messagingSenderId: "37242341415",
+      appId: "1:37242341415:web:5cc1863e6615874d84a602",
+      measurementId: "G-CRTK5FD726"
+    };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Start auth check immediately
     onAuthStateChanged(auth, async (user) => {
+      console.log("👀 Auth state changed. User:", user);
+
       if (!user) {
         console.warn("🚫 Not logged in");
         window.location.href = "/eschool/index.html";
@@ -80,17 +83,18 @@
       }
 
       const role = docSnap.data().role;
-      console.log("✅ Logged in as:", role);
+      console.log("🎭 Role:", role);
 
       if (role !== "admin") {
+        console.warn("⛔ Not an admin. Redirecting to student dashboard.");
         window.location.href = "/eschool/dashboards/student-dashboard.html";
         return;
       }
 
-      // ✅ Show page now that auth and role are confirmed
+      console.log("✅ Authenticated as admin. Showing dashboard.");
       document.body.style.display = "block";
 
-      // Inject navbar AFTER unlocking
+      // Load navbar AFTER auth passes
       fetch("/eschool/components/nav.html")
         .then(res => res.text())
         .then(data => {
@@ -103,7 +107,6 @@
     });
   </script>
 
-  <!-- Your admin dashboard JS -->
   <script type="module" src="/eschool/js/admin-dashboard.js"></script>
 </body>
 </html>
