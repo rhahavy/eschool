@@ -5,6 +5,10 @@
   <title>Teacher Dashboard | E-School</title>
   <link rel="stylesheet" href="/eschool/css/style.css" />
   <style>
+    body {
+      display: none;
+    }
+
     .dashboard-container {
       max-width: 1200px;
       margin: 2rem auto;
@@ -97,24 +101,22 @@
     <p>&copy; 2025 E-School | Made with ❤️ in Ontario</p>
   </footer>
 
-  <!-- ✅ Load Navbar + Auth Check -->
+  <!-- ✅ Firebase Auth + Role Protection -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-   const firebaseConfig = {
-  apiKey: "AlzaSyAllkCuaWm1YkomfGape6zl2z7aJrRzwJw",
-  authDomain: "eschool-gradebook.firebaseapp.com",
-  projectId: "eschool-gradebook"
-};
-
+    const firebaseConfig = {
+      apiKey: "AlzaSyAllkCuaWm1YkomfGape6zl2z7aJrRzwJw",
+      authDomain: "eschool-gradebook.firebaseapp.com",
+      projectId: "eschool-gradebook"
+    };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Load nav.html THEN check auth
     fetch("/eschool/components/nav.html")
       .then(res => res.text())
       .then(data => {
@@ -133,6 +135,7 @@
 
               if (role === "admin") {
                 navbar.style.display = "flex";
+                document.body.style.display = "block"; // ✅ Unlock page
               } else if (role === "student") {
                 window.location.href = "/eschool/dashboards/student-dashboard.html";
               } else {
@@ -148,7 +151,7 @@
       });
   </script>
 
-  <!-- ✅ Admin JS -->
+  <!-- ✅ Admin Dashboard Functionality -->
   <script type="module" src="/eschool/js/admin-dashboard.js"></script>
 </body>
 </html>
